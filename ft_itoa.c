@@ -26,17 +26,8 @@ size_t ft_ilen(int n)
     return (count);
 }
 
-char *ft_itoa(int n)
+char *ft_ins(char *mem, long int i, long int nt)
 {
-    char *mem;
-    long int i;
-    long int nt;
-
-    nt = (long int)n;
-    i = ft_ilen(nt);
-    if (nt < 0)
-        i += 1;
-    mem = malloc(sizeof(char) * (i+1));
     if (!mem)
         return (NULL);
     if (nt == 0)
@@ -54,4 +45,34 @@ char *ft_itoa(int n)
         i--;
     }
     return (mem);
+}
+
+char *ft_itoa(int n)
+{
+    char *mem;
+    long int i;
+    long int nt;
+
+    nt = (long int)n;
+    i = ft_ilen(nt);
+    if (nt < 0)
+        i += 1;
+    mem = malloc(sizeof(char) * (i+1));
+    // if (!mem)
+    //     return (NULL);
+    // if (nt == 0)
+    //     mem[0] = '0';
+    // mem[i] = '\0';
+    // if (nt < 0)
+    // {
+    //     mem[0] = '-';
+    //     nt *= -1;
+    // }
+    // while (nt > 0)
+    // {
+    //     mem[i - 1] = (nt % 10) + '0';
+    //     nt = nt / 10;
+    //     i--;
+    // }
+    return (ft_ins(mem, i, nt));
 }

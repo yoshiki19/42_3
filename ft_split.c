@@ -65,6 +65,47 @@ size_t ft_range(char const *s, char c)
     return(count);
 }
 
+void    *ft_free(char **mem, size_t j)
+{
+    while (j > 0)
+    {
+        free(mem[j]);
+        j--;
+    }
+    free(mem[0]);
+    free(mem);
+    return (NULL);
+}
+
+char    **ft_in(char **mem, char const *s, char c)
+{
+    size_t i;
+    size_t j;
+
+    i = 0;
+    j = 0;
+    while (*s != '\0')
+    {
+        if (s[0] == c)
+        {
+            while(s[i] == c)
+                i++;
+        }
+        s = s + i;
+        if(*s != c && *s != '\0')
+        {
+            mem[j] = ft_substr(s, 0, ft_range(s, c));
+            if (mem[j] == NULL)
+                return (ft_free(&mem[j], j));
+            j++;
+        }
+        s = s + ft_range(s, c);
+        i = 0;
+    }
+    mem[j] = NULL;
+    return (mem);
+}
+
 char **ft_split(char const *s, char c)
 {
     char **mem;
@@ -80,27 +121,27 @@ char **ft_split(char const *s, char c)
     mem = malloc(sizeof(char *) * (size + 1));
     if (!mem)
         return (NULL);
-    while (*s != '\0')
-    {
-        if (s[0] == c)
-        {
-            while(s[i] == c)
-                i++;
-        }
-        s = s + i;
-        if(*s != c && *s != '\0')
-        {
-            mem[j] = ft_substr(s, 0, ft_range(s, c));
-            if (mem[j] == NULL)
-            {
-                free(mem);
-                return (NULL);
-            }
-            j++;
-        }
-        s = s + ft_range(s, c);
-        i = 0;
-    }
-    mem[j] = NULL;
-    return (mem);
+    // while (*s != '\0')
+    // {
+    //     if (s[0] == c)
+    //     {
+    //         while(s[i] == c)
+    //             i++;
+    //     }
+    //     s = s + i;
+    //     if(*s != c && *s != '\0')
+    //     {
+    //         mem[j] = ft_substr(s, 0, ft_range(s, c));
+    //         if (mem[j] == NULL)
+    //         {
+    //             free(mem);
+    //             return (NULL);
+    //         }
+    //         j++;
+    //     }
+    //     s = s + ft_range(s, c);
+    //     i = 0;
+    // }
+    // mem[j] = NULL;
+    return (ft_in(mem, s, c));
 }

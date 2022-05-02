@@ -1,10 +1,28 @@
-#ifndef	LIBFT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykitamur <ykitamur@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/28 18:46:50 by ykitamur          #+#    #+#             */
+/*   Updated: 2022/04/28 18:56:22 by ykitamur         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIBFT_H
 # define LIBFT_H
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+
+typedef struct      s_list
+{
+    void            *content;
+    struct s_list   *next;
+}                   t_list;
 
 int	ft_isalpha(int c);
 int	ft_isdigit(int c);
@@ -44,11 +62,6 @@ int ft_toupper(int c);
 int ft_tolower(int c);
 
 
-typedef struct      s_list
-{
-    void            *content;
-    struct s_list   *next;
-}                   t_list;
 
 
 #endif
